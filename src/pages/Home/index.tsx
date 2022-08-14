@@ -26,7 +26,7 @@ export default function Home() {
           {days.map((item, index) => (
             <div key={index}>
               {item.day}: {item.value}
-              <Divider />
+              <Divider variant="light" />
             </div>
           ))}
         </DayTimeList>
