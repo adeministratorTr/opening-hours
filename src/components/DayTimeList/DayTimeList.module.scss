@@ -1,0 +1,22 @@
+@import 'src/styles/variables';
+
+.container {
+  background-color: $color-white-primary;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border: 1px solid $border-color-200;
+  border-radius: 10px;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.title {
+  font-size: $font-size-lg;
+  margin-left: 10px;
+}
