@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import { getRestaurantTimeSlots } from 'services/restaurant';
+import DayTimeList from 'components/DayTimeList';
+import Divider from 'components/Divider';
+
 import { mapDateTime, TMappedDateTime } from './mapper';
 
 export default function Home() {
@@ -16,16 +20,16 @@ export default function Home() {
     <div>
       {!days || (days === null && renderNoResult())}
       {days && days.length === 0 && renderNoResult()}
+      {/* @TODO Add "TODAY" badge */}
       {days && days.length > 1 && (
-        <>
-          <div>Opening Hours</div>
-          <p>----------------------------</p>
+        <DayTimeList>
           {days.map((item, index) => (
-            <p key={index}>
+            <div key={index}>
               {item.day}: {item.value}
-            </p>
+              <Divider />
+            </div>
           ))}
-        </>
+        </DayTimeList>
       )}
     </div>
   );
