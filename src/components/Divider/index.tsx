@@ -8,5 +8,5 @@ type TDividerProps = {
 
 export default function Divider({ variant }: TDividerProps) {
   const className = classNames(styles.container, variant && styles[variant]);
-  return <div className={className} />;
+  return <div className={className} data-testid="Divider" />;
 }
