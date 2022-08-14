@@ -1,3 +1,12 @@
-export default function Divider() {
-  return <div style={{ width: '100%', border: '1px solid black' }}></div>;
+import { classNames } from 'helpers/css';
+
+import styles from './Divider.module.scss';
+
+type TDividerProps = {
+  variant?: 'light';
+};
+
+export default function Divider({ variant }: TDividerProps) {
+  const className = classNames(styles.container, variant && styles[variant]);
+  return <div className={className} />;
 }

@@ -1,0 +1,10 @@
+@import 'src/styles/variables';
+
+.container {
+  width: 100%;
+  border: 1px solid $color-black-primary;
+
+  &.light {
+    border-color: $border-color-200;
+  }
+}
