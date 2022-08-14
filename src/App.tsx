@@ -1,11 +1,11 @@
 import Home from 'pages/Home';
 import Header from 'components/Header';
 
-import './App.css';
+import styles from './App.module.scss';
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.app}>
       <Header />
       <Home />
     </div>
