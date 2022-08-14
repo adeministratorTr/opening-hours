@@ -1,7 +1,6 @@
 import { TRestaurantDays, Days, Status } from 'services/types';
 
 export type TMappedDateTime = {
-  //@TODO move to constant file
   day: Days;
   value: string;
 };
@@ -46,6 +45,7 @@ export function mapDateTime(fullData: TRestaurantDays): TMappedDateTime[] {
 }
 
 // @TODO handle day item "close-open-close" case
+// @TODO add multiple "open-close" in same day. i.e., 9 AM - 1 PM, 3 PM - 11 PM
 // Now its working only in happy path
 
 function getBusinessTimeText(dayList: any[]): string | any {
