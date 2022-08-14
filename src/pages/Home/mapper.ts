@@ -53,7 +53,11 @@ function getBusinessTimeText(dayList: any[]): string | any {
   if (!dayList || dayList === null) return Status.Close;
   if (dayList.length === 0) return Status.Close; // if certain day has no data, that means shop closed that day.
   if (dayList.length % 2 === 0) {
-    return getTextFromSecond({ second: dayList[0].value }) + ' - ' + getTextFromSecond({ second: dayList[1].value });
+    return (
+      getTextFromSecond({ second: dayList[0].value }) +
+      ' - ' +
+      getTextFromSecond({ second: dayList[1].value })
+    );
   }
 
   // Just to be safe, I decided to assign closed text. Discussable, Changeable according to needs
@@ -63,6 +67,10 @@ function getBusinessTimeText(dayList: any[]): string | any {
 function getTextFromSecond({ second }: { second: number }): string {
   const time = new Date(0);
   time.setSeconds(second);
-  const hour = time.toLocaleString('en-US', { timeZone: 'UTC', hour: 'numeric', hour12: true });
+  const hour = time.toLocaleString('en-US', {
+    timeZone: 'UTC',
+    hour: 'numeric',
+    hour12: true
+  });
   return hour;
 }
