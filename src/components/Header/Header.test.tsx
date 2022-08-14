@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
 import Header from './index';
-describe('Divider', () => {
+
+describe('Header', () => {
   it('should render default', () => {
     render(<Header />);
 
