@@ -1,4 +1,5 @@
 {
+  "__COMMENT__": "@ TODO test with other scenarios before finish",
   "monday": [],
   "tuesday": [
     { "type": "open", "value": 36000 },
@@ -9,13 +10,15 @@
     { "type": "open", "value": 36000 },
     { "type": "close", "value": 64800 }
   ],
-  "friday": [{ "type": "open", "value": 36000 }],
+  "friday": [
+    { "type": "open", "value": 36000 },
+    { "type": "close", "value": 3600 }
+  ],
   "saturday": [
-    { "type": "close", "value": 3600 },
-    { "type": "open", "value": 36000 }
+    { "type": "open", "value": 36000 },
+    { "type": "close", "value": 3600 }
   ],
   "sunday": [
-    { "type": "close", "value": 3600 },
     { "type": "open", "value": 43200 },
     { "type": "close", "value": 75600 }
   ]
