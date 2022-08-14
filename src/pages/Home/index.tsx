@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getRestaurantTimeSlots } from 'services/restaurant';
 import DayTimeList from 'components/DayTimeList';
 import Divider from 'components/Divider';
 
 import { mapDateTime, TMappedDateTime } from './mapper';
+
+import styles from './Home.module.scss';
 
 export default function Home() {
   const [days, setDays] = useState<TMappedDateTime[]>();
@@ -22,14 +24,20 @@ export default function Home() {
       {days && days.length === 0 && renderNoResult()}
       {/* @TODO Add "TODAY" badge */}
       {days && days.length > 1 && (
-        <DayTimeList>
-          {days.map((item, index) => (
-            <div key={index}>
-              {item.day}: {item.value}
-              <Divider variant="light" />
-            </div>
-          ))}
-        </DayTimeList>
+        <div className={styles.dayTimeWrapper}>
+          <DayTimeList>
+            {days.map((item, index) => (
+              <React.Fragment key={index}>
+                <div className={styles.dayTimeItem}>
+                  <p>{item.day}</p>
+                  <p>{item.value}</p>
+                  {/* Add gray color to "Closed" */}
+                </div>
+                <Divider variant="light" />
+              </React.Fragment>
+            ))}
+          </DayTimeList>
+        </div>
       )}
     </div>
   );
