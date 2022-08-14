@@ -1,3 +1,7 @@
+@import 'src/styles/variables';
+
 .app {
+  background-color: $body-background;
+  height: 70vh;
   text-align: center;
 }
