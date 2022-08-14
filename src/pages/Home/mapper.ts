@@ -49,6 +49,7 @@ export function mapDateTime(fullData: TRestaurantDays): TMappedDateTime[] {
 // Now its working only in happy path
 
 function getBusinessTimeText(dayList: any[]): string | any {
+  //@TODO Fix "any"s
   if (!dayList || dayList === null) return Status.Close;
   if (dayList.length === 0) return Status.Close; // if certain day has no data, that means shop closed that day.
   if (dayList.length % 2 === 0) {
