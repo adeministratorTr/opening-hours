@@ -1,6 +1,6 @@
 export type TRestaurantDays = {
   [key in Days]: {
-    type: keyof typeof Status;
+    type: `${Status}`
     value: number;
   }[];
 };
@@ -17,5 +17,5 @@ export enum Days {
 
 export enum Status {
   Open = 'open',
-  Close = 'closed'
+  Close = 'close'
 }

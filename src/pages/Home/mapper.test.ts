@@ -12,35 +12,35 @@ describe('Home Page -> mapper', () => {
       saturday: [],
       sunday: []
     };
-    it('should map data to closed for all days', () => {
+    it('should map data to close for all days', () => {
       const expectedData = [
         {
           day: 'monday',
-          value: 'closed'
+          value: 'close'
         },
         {
           day: 'tuesday',
-          value: 'closed'
+          value: 'close'
         },
         {
           day: 'wednesday',
-          value: 'closed'
+          value: 'close'
         },
         {
           day: 'thursday',
-          value: 'closed'
+          value: 'close'
         },
         {
           day: 'friday',
-          value: 'closed'
+          value: 'close'
         },
         {
           day: 'saturday',
-          value: 'closed'
+          value: 'close'
         },
         {
           day: 'sunday',
-          value: 'closed'
+          value: 'close'
         }
       ];
       expect(mapDateTime(sampleAPIData)).toStrictEqual(expectedData);
@@ -62,15 +62,15 @@ describe('Home Page -> mapper', () => {
         },
         {
           day: 'tuesday',
-          value: 'closed'
+          value: 'close'
         },
         {
           day: 'wednesday',
-          value: 'closed'
+          value: 'close'
         },
         {
           day: 'thursday',
-          value: 'closed'
+          value: 'close'
         },
         {
           day: 'friday',
@@ -78,11 +78,11 @@ describe('Home Page -> mapper', () => {
         },
         {
           day: 'saturday',
-          value: 'closed'
+          value: 'close'
         },
         {
           day: 'sunday',
-          value: 'closed'
+          value: 'close'
         }
       ];
       expect(mapDateTime(sampleAPIData)).toStrictEqual(expectedData);
