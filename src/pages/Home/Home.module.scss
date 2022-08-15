@@ -1,3 +1,5 @@
+@import 'src/styles/variables';
+
 .dayTimeWrapper {
   width: 300px;
   margin: 0 auto;
@@ -9,9 +11,20 @@
   text-transform: capitalize;
   display: flex;
   justify-content: space-between;
-  font-weight: medium;
 
   p {
     margin: 0 
   }
+}
+
+// style will be crossover if restaurant has TODAY badge and 2 'open-close' time slots
+// @TODO Talk to designer & product
+.badge {
+  margin-left: 10px;
+  text-transform: capitalize;
+  font-size: $font-size-sm;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: $color-green-primary;
 }
