@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { getRestaurantTimeSlots } from 'services/restaurant';
 import DayTimeList from 'components/DayTimeList';
 import Divider from 'components/Divider';
+import { Days } from 'services/types';
 
 import { mapDateTime, TMappedDateTime } from './mapper';
-
 import styles from './Home.module.scss';
-import { Days } from 'services/types';
 
 export default function Home() {
   const [days, setDays] = useState<TMappedDateTime[]>();
@@ -34,8 +33,8 @@ export default function Home() {
             {days.map((item, index) => (
               <React.Fragment key={index}>
                 <div className={styles.dayTimeItem}>
-                  <div>
-                    {item.day}{' '}
+                  <div className={styles.day}>
+                    {item.day}
                     {showTodayBadge({ day: item.day }) && (
                       <div className={styles.badge}>TODAY</div>
                     )}

@@ -17,6 +17,10 @@
   }
 }
 
+.day {
+  display: flex;
+}
+
 // style will be crossover if restaurant has TODAY badge and 2 'open-close' time slots
 // @TODO Talk to designer & product
 .badge {
