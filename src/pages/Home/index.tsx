@@ -38,7 +38,7 @@ export default function Home() {
             {days.map((item, index) => (
               <React.Fragment key={index}>
                 <div className={styles.dayTimeItem}>
-                  <div className={styles.day}>
+                  <div className={styles.day} data-testid="DayListChild">
                     {item.day}
                     {showTodayBadge({ day: item.day }) && (
                       <div className={styles.badge}>TODAY</div>
