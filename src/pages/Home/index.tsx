@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { getRestaurantTimeSlots } from 'services/restaurant';
 import DayTimeList from 'components/DayTimeList';
 import Divider from 'components/Divider';
-import { Days } from 'services/types';
+import { Days, Status } from 'services/types';
+import { classNames } from 'helpers/css';
 
 import { mapDateTime, TMappedDateTime } from './mapper';
 import styles from './Home.module.scss';
@@ -17,6 +18,10 @@ export default function Home() {
   function showTodayBadge({ day }: { day: Days }): boolean {
     const today = new Date().toLocaleString('en-us', { weekday: 'long' });
     return today.toLowerCase() === day.toLowerCase();
+  }
+
+  function getValueClassName({ value }: { value: string }): string {
+    return classNames(value === Status.Close && styles.close);
   }
 
   function renderNoResult() {
@@ -39,8 +44,7 @@ export default function Home() {
                       <div className={styles.badge}>TODAY</div>
                     )}
                   </div>
-                  <p>{item.value}</p>
-                  {/* Add gray color to "Close" */}
+                  <p className={getValueClassName({ value: item.value })}>{item.value}</p>
                 </div>
                 <Divider variant="light" />
               </React.Fragment>
