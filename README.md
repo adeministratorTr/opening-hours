@@ -30,6 +30,8 @@ Since its not deployed anywhere, before running any e2e/cypress test command, yo
 
 If you want to video, then `npm run cy:open`. In that case you need to go through cypress UI and select 'E2E Testing' and then select a browser.
 
+For coverage, you can use `npm test:coverage` command.
+
 ## ToDos
 
 - [ ] Add pre-commit/pre-push for linting
