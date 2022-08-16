@@ -1,6 +1,5 @@
 {
-  "__COMMENT__": "@TODO test with other scenarios before finish",
-  "monday": [],
+  "monday": [{ "type": "close", "value": 3600 }],
   "tuesday": [
     { "type": "open", "value": 36000 },
     { "type": "close", "value": 64800 }
@@ -10,16 +9,28 @@
     { "type": "open", "value": 36000 },
     { "type": "close", "value": 64800 }
   ],
-  "friday": [
-    { "type": "open", "value": 36000 },
-    { "type": "close", "value": 3600 }
-  ],
+  "friday": [{ "type": "open", "value": 36000 }],
   "saturday": [
-    { "type": "open", "value": 36000 },
-    { "type": "close", "value": 3600 }
+    {
+      "type": "close",
+      "value": 3600
+    },
+    {
+      "type": "open",
+      "value": 32400
+    },
+    {
+      "type": "close",
+      "value": 39600
+    },
+    {
+      "type": "open",
+      "value": 57600
+    },
+    {
+      "type": "close",
+      "value": 82800
+    }
   ],
-  "sunday": [
-    { "type": "open", "value": 43200 },
-    { "type": "close", "value": 75600 }
-  ]
+  "sunday": [{ "type": "open", "value": 43200 }]
 }
