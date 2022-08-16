@@ -30,7 +30,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div data-testid="HomePage">
       {!days || (days === null && renderNoResult())}
       {days && days.length === 0 && renderNoResult()}
       {days && days.length > 1 && (
