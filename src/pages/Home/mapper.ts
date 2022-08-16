@@ -1,5 +1,5 @@
 import { TRestaurantDays, TDayHours, Days, Status } from 'services/types';
-import { weekDays } from './Home.constants';
+import { CLOSE_TEXT_ON_PAGE, weekDays } from './Home.constants';
 
 export type TMappedDateTime = {
   day: Days;
@@ -57,7 +57,6 @@ function getDayIndex(index: number): Days {
 function normalizeDaysWorkingHours(originalData: TRestaurantDays): TRestaurantDays {
   // Normalize data in a way we'll use in Page
   for (let i = 0; i < weekDays.length; i++) {
-
     // day has no data, means they close
     if (originalData[getDayIndex(i)].length === 0) {
       continue;
@@ -76,8 +75,8 @@ function normalizeDaysWorkingHours(originalData: TRestaurantDays): TRestaurantDa
 }
 
 function getBusinessTimeText(dayList: TDayHours[]): string {
-  if (!dayList || dayList === null) return Status.Close;
-  if (dayList.length === 0) return Status.Close; // if certain day has no data, that means shop closed that day.
+  if (!dayList || dayList === null) return CLOSE_TEXT_ON_PAGE;
+  if (dayList.length === 0) return CLOSE_TEXT_ON_PAGE; // if certain day has no data, that means shop closed that day.
   const mappedList: string[] = [];
   for (let i = 1; i <= Object.keys(dayList).length; i += 2) {
     // to group hours 2 by 2. Then it'll be easier to join with ', '

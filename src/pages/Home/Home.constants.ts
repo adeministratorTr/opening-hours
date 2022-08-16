@@ -9,3 +9,5 @@ export const weekDays = [
   Days.Saturday,
   Days.Sunday
 ];
+
+export const CLOSE_TEXT_ON_PAGE = 'Closed';

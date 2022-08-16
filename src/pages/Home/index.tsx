@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { getRestaurantTimeSlots } from 'services/restaurant';
 import DayTimeList from 'components/DayTimeList';
 import Divider from 'components/Divider';
-import { Days, Status } from 'services/types';
+import { Days } from 'services/types';
 import { classNames } from 'helpers/css';
 
 import { mapDateTime, TMappedDateTime } from './mapper';
 import styles from './Home.module.scss';
+import { CLOSE_TEXT_ON_PAGE } from './Home.constants';
 
 export default function Home() {
   const [days, setDays] = useState<TMappedDateTime[]>();
@@ -21,7 +22,7 @@ export default function Home() {
   }
 
   function getValueClassName({ value }: { value: string }): string {
-    return classNames(value === Status.Close && styles.close);
+    return classNames(value === CLOSE_TEXT_ON_PAGE && styles.close);
   }
 
   function renderNoResult() {

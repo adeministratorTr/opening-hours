@@ -1,5 +1,6 @@
 import { mapDateTime } from './mapper';
 import { TRestaurantDays } from 'services/types';
+import { CLOSE_TEXT_ON_PAGE } from './Home.constants';
 
 describe('Home Page -> mapper', () => {
   describe('mapDateTime', () => {
@@ -16,31 +17,31 @@ describe('Home Page -> mapper', () => {
       const expectedData = [
         {
           day: 'monday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'tuesday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'wednesday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'thursday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'friday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'saturday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'sunday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         }
       ];
       expect(mapDateTime(sampleAPIData)).toStrictEqual(expectedData);
@@ -61,15 +62,15 @@ describe('Home Page -> mapper', () => {
         },
         {
           day: 'tuesday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'wednesday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'thursday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'friday',
@@ -77,11 +78,11 @@ describe('Home Page -> mapper', () => {
         },
         {
           day: 'saturday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'sunday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         }
       ];
       expect(mapDateTime(sampleAPIData)).toStrictEqual(expectedData);
@@ -115,15 +116,15 @@ describe('Home Page -> mapper', () => {
         },
         {
           day: 'tuesday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'wednesday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'thursday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'friday',
@@ -131,11 +132,11 @@ describe('Home Page -> mapper', () => {
         },
         {
           day: 'saturday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         },
         {
           day: 'sunday',
-          value: 'close'
+          value: CLOSE_TEXT_ON_PAGE
         }
       ];
       expect(mapDateTime(sampleAPIData)).toStrictEqual(expectedData);
