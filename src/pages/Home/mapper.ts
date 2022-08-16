@@ -1,4 +1,5 @@
-import { TRestaurantDays, Days, Status } from 'services/types';
+import { TRestaurantDays, TDayHours, Days, Status } from 'services/types';
+import { weekDays } from './Home.constants';
 
 export type TMappedDateTime = {
   day: Days;
@@ -10,58 +11,83 @@ export type TMappedDateTime = {
 // it'll be easier to add new feature/debug/change current state.
 
 export function mapDateTime(fullData: TRestaurantDays): TMappedDateTime[] {
+  const normalizedData = normalizeDaysWorkingHours(fullData);
+
   const mappedObject: TMappedDateTime[] = [
     {
       day: Days.Monday,
-      value: getBusinessTimeText(fullData[Days.Monday])
+      value: getBusinessTimeText(normalizedData[Days.Monday])
     },
     {
       day: Days.Tuesday,
-      value: getBusinessTimeText(fullData[Days.Tuesday])
+      value: getBusinessTimeText(normalizedData[Days.Tuesday])
     },
     {
       day: Days.Wednesday,
-      value: getBusinessTimeText(fullData[Days.Wednesday])
+      value: getBusinessTimeText(normalizedData[Days.Wednesday])
     },
     {
       day: Days.Thursday,
-      value: getBusinessTimeText(fullData[Days.Thursday])
+      value: getBusinessTimeText(normalizedData[Days.Thursday])
     },
     {
       day: Days.Friday,
-      value: getBusinessTimeText(fullData[Days.Friday])
+      value: getBusinessTimeText(normalizedData[Days.Friday])
     },
     {
       day: Days.Saturday,
-      value: getBusinessTimeText(fullData[Days.Saturday])
+      value: getBusinessTimeText(normalizedData[Days.Saturday])
     },
     {
       day: Days.Sunday,
-      value: getBusinessTimeText(fullData[Days.Sunday])
+      value: getBusinessTimeText(normalizedData[Days.Sunday])
     }
   ];
-
   return mappedObject;
 }
 
-// @TODO handle day item "close-open-close" case
-// @TODO add multiple "open-close" in same day. i.e., 9 AM - 1 PM, 3 PM - 11 PM
-// Now its working only in happy path
+function getDayIndex(index: number): Days {
+  if (index === -1) {
+    // in case of Sunday, has closing time for Monday
+    return weekDays[weekDays.length - 1];
+  }
+  return weekDays[index];
+}
 
-function getBusinessTimeText(dayList: any[]): string | any {
-  //@TODO Fix "any"s
+function normalizeDaysWorkingHours(originalData: TRestaurantDays): TRestaurantDays {
+  // Normalize data in a way we'll use in Page
+  for (let i = 0; i < weekDays.length; i++) {
+
+    // day has no data, means they close
+    if (originalData[getDayIndex(i)].length === 0) {
+      continue;
+    }
+    if (originalData[getDayIndex(i)][0].type === Status.Close) {
+      // move first "close" type value to the day before
+      const previousDay = i - 1;
+      originalData[getDayIndex(previousDay)] = [
+        ...originalData[getDayIndex(previousDay)],
+        originalData[getDayIndex(i)][0]
+      ];
+      originalData[getDayIndex(i)] = originalData[getDayIndex(i)].slice(1);
+    }
+  }
+  return originalData;
+}
+
+function getBusinessTimeText(dayList: TDayHours[]): string {
   if (!dayList || dayList === null) return Status.Close;
   if (dayList.length === 0) return Status.Close; // if certain day has no data, that means shop closed that day.
-  if (dayList.length % 2 === 0) {
-    return (
-      getTextFromSecond({ second: dayList[0].value }) +
-      ' - ' +
-      getTextFromSecond({ second: dayList[1].value })
+  const mappedList: string[] = [];
+  for (let i = 1; i <= Object.keys(dayList).length; i += 2) {
+    // to group hours 2 by 2. Then it'll be easier to join with ', '
+    mappedList.push(
+      getTextFromSecond({ second: dayList[i - 1].value }) +
+        ' - ' +
+        getTextFromSecond({ second: dayList[i].value })
     );
   }
-
-  // Just to be safe, I decided to assign closed text. Discussable, Changeable according to needs
-  return Status.Close;
+  return mappedList.map((i) => i).join(', ');
 }
 
 function getTextFromSecond({ second }: { second: number }): string {

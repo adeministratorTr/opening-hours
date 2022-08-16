@@ -1,8 +1,10 @@
 export type TRestaurantDays = {
-  [key in Days]: {
-    type: `${Status}`
-    value: number;
-  }[];
+  [key in Days]: TDayHours[];
+};
+
+export type TDayHours = {
+  type: `${Status}`;
+  value: number;
 };
 
 export enum Days {

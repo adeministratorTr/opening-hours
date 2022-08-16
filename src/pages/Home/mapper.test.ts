@@ -45,8 +45,7 @@ describe('Home Page -> mapper', () => {
       ];
       expect(mapDateTime(sampleAPIData)).toStrictEqual(expectedData);
     });
-
-    it('should map data to some days', () => {
+    it('should map data into day & value way', () => {
       sampleAPIData.monday = [
         { type: 'open', value: 36000 },
         { type: 'close', value: 64800 }
@@ -75,6 +74,60 @@ describe('Home Page -> mapper', () => {
         {
           day: 'friday',
           value: '9 AM - 11 PM'
+        },
+        {
+          day: 'saturday',
+          value: 'close'
+        },
+        {
+          day: 'sunday',
+          value: 'close'
+        }
+      ];
+      expect(mapDateTime(sampleAPIData)).toStrictEqual(expectedData);
+    });
+
+    it('should map data into multiple day & value way', () => {
+      sampleAPIData.monday = [{ type: 'open', value: 36000 }];
+      sampleAPIData.tuesday = [{ type: 'close', value: 3600 }];
+      sampleAPIData.friday = [
+        {
+          type: 'open',
+          value: 32400
+        },
+        {
+          type: 'close',
+          value: 39600
+        },
+        {
+          type: 'open',
+          value: 57600
+        },
+        {
+          type: 'close',
+          value: 82800
+        }
+      ];
+      const expectedData = [
+        {
+          day: 'monday',
+          value: '10 AM - 1 AM'
+        },
+        {
+          day: 'tuesday',
+          value: 'close'
+        },
+        {
+          day: 'wednesday',
+          value: 'close'
+        },
+        {
+          day: 'thursday',
+          value: 'close'
+        },
+        {
+          day: 'friday',
+          value: '9 AM - 11 AM, 4 PM - 11 PM'
         },
         {
           day: 'saturday',
