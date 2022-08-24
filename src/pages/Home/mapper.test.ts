@@ -2,17 +2,28 @@ import { mapDateTime } from './mapper';
 import { TRestaurantDays } from 'services/types';
 import { CLOSE_TEXT_ON_PAGE } from './Home.constants';
 
+const sampleAPIData: TRestaurantDays = {
+  monday: [],
+  tuesday: [],
+  wednesday: [],
+  thursday: [],
+  friday: [],
+  saturday: [],
+  sunday: []
+};
+
+beforeEach(() => {
+  sampleAPIData.monday = []
+  sampleAPIData.tuesday = []
+  sampleAPIData.wednesday = []
+  sampleAPIData.thursday = []
+  sampleAPIData.friday = []
+  sampleAPIData.saturday = []
+  sampleAPIData.sunday = []
+})
+
 describe('Home Page -> mapper', () => {
   describe('mapDateTime', () => {
-    const sampleAPIData: TRestaurantDays = {
-      monday: [],
-      tuesday: [],
-      wednesday: [],
-      thursday: [],
-      friday: [],
-      saturday: [],
-      sunday: []
-    };
     it('should map data to close for all days', () => {
       const expectedData = [
         {
@@ -87,7 +98,6 @@ describe('Home Page -> mapper', () => {
       ];
       expect(mapDateTime(sampleAPIData)).toStrictEqual(expectedData);
     });
-
     it('should map data into multiple day & value way', () => {
       sampleAPIData.monday = [{ type: 'open', value: 36000 }];
       sampleAPIData.tuesday = [{ type: 'close', value: 3600 }];
@@ -141,5 +151,44 @@ describe('Home Page -> mapper', () => {
       ];
       expect(mapDateTime(sampleAPIData)).toStrictEqual(expectedData);
     });
+    it('should map data for Sunday open & Monday close edge case', () => {
+      sampleAPIData.monday = [
+        { type: 'close', value: 3600 }
+      ];
+      sampleAPIData.sunday = [
+        { type: 'open', value: 64800 }
+      ];
+      const expectedData = [
+        {
+          day: 'monday',
+          value: CLOSE_TEXT_ON_PAGE
+        },
+        {
+          day: 'tuesday',
+          value: CLOSE_TEXT_ON_PAGE
+        },
+        {
+          day: 'wednesday',
+          value: CLOSE_TEXT_ON_PAGE
+        },
+        {
+          day: 'thursday',
+          value: CLOSE_TEXT_ON_PAGE
+        },
+        {
+          day: 'friday',
+          value: CLOSE_TEXT_ON_PAGE
+        },
+        {
+          day: 'saturday',
+          value: CLOSE_TEXT_ON_PAGE
+        },
+        {
+          day: 'sunday',
+          value: '6 PM - 1 AM'
+        }
+      ];
+      expect(mapDateTime(sampleAPIData)).toStrictEqual(expectedData);
+    })
   });
 });

@@ -55,23 +55,24 @@ function getDayIndex(index: number): Days {
 }
 
 function normalizeDaysWorkingHours(originalData: TRestaurantDays): TRestaurantDays {
+  const normalizeData = originalData; // to keep source of truth as is
   // Normalize data in a way we'll use in Page
   for (let i = 0; i < weekDays.length; i++) {
     // day has no data, means they close
-    if (originalData[getDayIndex(i)].length === 0) {
+    if (normalizeData[getDayIndex(i)].length === 0) {
       continue;
     }
-    if (originalData[getDayIndex(i)][0].type === Status.Close) {
+    if (normalizeData[getDayIndex(i)][0].type === Status.Close) {
       // move first "close" type value to the day before
       const previousDay = i - 1;
-      originalData[getDayIndex(previousDay)] = [
-        ...originalData[getDayIndex(previousDay)],
-        originalData[getDayIndex(i)][0]
+      normalizeData[getDayIndex(previousDay)] = [
+        ...normalizeData[getDayIndex(previousDay)],
+        normalizeData[getDayIndex(i)][0]
       ];
-      originalData[getDayIndex(i)] = originalData[getDayIndex(i)].slice(1);
+      normalizeData[getDayIndex(i)] = normalizeData[getDayIndex(i)].slice(1);
     }
   }
-  return originalData;
+  return normalizeData;
 }
 
 function getBusinessTimeText(dayList: TDayHours[]): string {
